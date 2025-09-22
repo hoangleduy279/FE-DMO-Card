@@ -1,6 +1,9 @@
 const HOME_PAGE: IRouteConstant = {
     href: '/',
 };
+const AUTH_APP: IRouteConstant = {
+    href: '/auth',
+};
 const LOGIN_PAGE: IRouteConstant = {
     href: '/auth/login',
 };
@@ -13,6 +16,7 @@ const NOT_FOUND_PAGE: IRouteConstant = {
 
 export const CLIENT = {
     HOME: HOME_PAGE,
+    AUTH: AUTH_APP,
     LOGIN: LOGIN_PAGE,
     NOT_FOUND: NOT_FOUND_PAGE,
     NEWS_DETAIL: NEWS_DETAIL_PAGE,

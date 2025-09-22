@@ -27,16 +27,16 @@ const App: IAppComponent<IAppComponentProps> = (props) => {
     const token = authHelper.accessToken();
     const { reloadKey } = state;
     const locale = params?.locale as string | undefined;
-    const noAuthPath = [routes.CLIENT.LOGIN.href];
+    const noAuthPath = [routes.CLIENT.LOGIN.href, routes.CLIENT.AUTH.href];
 
     const isNotFoundPage = statusCode === http.NOT_FOUND_CODE;
     const isShowComponent = !noAuthPath.includes(pathname) && !isNotFoundPage;
 
-    const noHeaderFooterPath = [routes.CLIENT.LOGIN.href];
+    const noHeaderFooterPath = [routes.CLIENT.LOGIN.href, routes.CLIENT.AUTH.href];
 
     useEffect(() => {
         if (!token && !noAuthPath.includes(pathname)) {
-            router.replace(routes.CLIENT.LOGIN.href);
+            router.replace(routes.CLIENT.AUTH.href);
         }
     }, [token]);
 
