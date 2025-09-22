@@ -1,0 +1,71 @@
+.pages {
+    &__newsDetail {
+        .title {
+            font-size: 48px;
+            line-height: 56px;
+            color: $color-black;
+            font-weight: 700;
+        }
+        .main {
+            &-image {
+                img {
+                    width: 50%;
+                }
+            }
+            &-content {
+                font-size: 20px;
+            }
+        }
+        .comment {
+            &-top {
+                &-title {
+                    font-size: 18px;
+                    color: $color-black;
+                    font-weight: 700;
+                }
+                &-profile {
+                    .avatar {
+                        height: 50px;
+                        width: 50px;
+                        border-radius: 50px;
+                    }
+                    .username {
+                        font-size: 18px;
+                        font-weight: 700;
+                    }
+                }
+            }
+            &-bottom {
+                .list-comment {
+                    &-item {
+                        .comment-avatar {
+                            img {
+                                height: 50px;
+                                width: 50px;
+                                border-radius: 50%;
+                                font-size: 20px;
+                                color: $color-white;
+                                font-weight: 600;
+                            }
+                        }
+                        .comment-content {
+                            &-text {
+                                font-size: 18px;
+                            }
+                            &-more {
+                                font-size: 14px;
+                                color: $color-gray;
+                                gap: 10px;
+                                cursor: pointer;
+                            }
+                            .list-reply {
+                                padding: 0 20px;
+                                border-left: 2px solid $color-white-lighten;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

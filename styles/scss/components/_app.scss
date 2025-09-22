@@ -1,0 +1,16 @@
+.components {
+    &__app {
+        width: 100%;
+        // min-height: 100vh;
+        transition-timing-function: ease-in;
+        transition: 0.25s;
+        &-body {
+            flex: 1;
+        }
+        &-content {
+            min-height: calc(100vh - 80px - 83px);
+            height: 100%;
+            background: #fdfdfd;
+        }
+    }
+}

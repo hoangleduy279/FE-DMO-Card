@@ -1,0 +1,14 @@
+.components {
+    &__header {
+        color: red;
+        height: 80px;
+        background: #fdfdfd;
+        &-icon {
+            cursor: pointer;
+            gap: 0 20px;
+        }
+        .logo {
+            cursor: pointer;
+        }
+    }
+}
