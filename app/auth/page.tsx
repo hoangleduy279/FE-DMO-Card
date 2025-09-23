@@ -169,7 +169,11 @@ const AppAuth: IAuthApp<IAuthAppProps> = () => {
 
                     <div className="emergency-body">
                         <div className="button-wrapper">
-                            <button className="emergency-button-3d" onClick={() => {}}>
+                            <button
+                                className="emergency-button-3d"
+                                onClick={() => {
+                                    handleNextPage(routes.CLIENT.LOGIN.href, { type: 'emergency' });
+                                }}>
                                 <div className="button-surface">
                                     <span className="button-text">Emergency</span>
                                 </div>

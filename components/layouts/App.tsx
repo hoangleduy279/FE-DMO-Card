@@ -9,7 +9,6 @@ import Header from '@components/layouts/Header';
 import Footer from '@components/layouts/Footer';
 
 import { fetchAccountUser, setLocale, setModal } from '@redux/actions';
-// import { authHelper } from '@utils/helpers';
 import { useAppDispatch } from '@utils/hooks';
 import { http, routes } from '@utils/constants';
 import { authHelper } from '@utils/helpers';

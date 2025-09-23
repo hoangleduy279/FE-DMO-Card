@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     const storeRef = useRef(makeStore());
     return (
         <html lang="kr">
-            <body>
+            <body suppressHydrationWarning={true}>
                 <Provider store={storeRef.current}>
                     <App>{children}</App>
                 </Provider>
