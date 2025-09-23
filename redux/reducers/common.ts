@@ -1,6 +1,6 @@
 import { SET_LOCALE, SET_MODAL } from '@redux/actions/type';
 
-const localeReducer = (state: string = 'kr', action: ILocaleReduxAction) => {
+const localeReducer = (state: string = 'fr', action: ILocaleReduxAction) => {
     switch (action.type) {
         case SET_LOCALE:
             return action.data;

@@ -11,7 +11,7 @@ import { makeStore } from '@redux/store';
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     const storeRef = useRef(makeStore());
     return (
-        <html lang="kr">
+        <html lang="fr">
             <body suppressHydrationWarning={true}>
                 <Provider store={storeRef.current}>
                     <App>{children}</App>

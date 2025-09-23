@@ -18,8 +18,8 @@ module.exports = async () => {
         },
         reactStrictMode: true,
         i18n: {
-            locales: ['en', 'kr'],
-            defaultLocale: 'kr',
+            locales: ['en', 'fr'],
+            defaultLocale: 'fr',
             localeDetection: false,
         },
     };
