@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { usePathname, useParams, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import Loader from '@components/layouts/Loader';
 import Modal from '@components/layouts/Modal';
@@ -15,7 +15,7 @@ import { authHelper } from '@utils/helpers';
 
 const App: IAppComponent<IAppComponentProps> = (props) => {
     const { children, statusCode } = props;
-    const params = useParams();
+    const params = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
     const dispatch = useAppDispatch();
@@ -25,7 +25,7 @@ const App: IAppComponent<IAppComponentProps> = (props) => {
     });
     const token = authHelper.accessToken();
     const { reloadKey } = state;
-    const locale = params?.locale as string | undefined;
+    const locale = params.get('locale') ?? 'fr';
     const noAuthPath = [routes.CLIENT.LOGIN.href, routes.CLIENT.AUTH.href];
 
     const isNotFoundPage = statusCode === http.NOT_FOUND_CODE;
