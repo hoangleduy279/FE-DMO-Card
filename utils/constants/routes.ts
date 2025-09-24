@@ -14,12 +14,18 @@ const NOT_FOUND_PAGE: IRouteConstant = {
     href: '/404',
 };
 
+// Dashboard
+const DASHBOARD_PAGE: IRouteConstant = {
+    href: '/dashboard',
+};
+
 export const CLIENT = {
     HOME: HOME_PAGE,
     AUTH: AUTH_APP,
     LOGIN: LOGIN_PAGE,
     NOT_FOUND: NOT_FOUND_PAGE,
     NEWS_DETAIL: NEWS_DETAIL_PAGE,
+    DASHBOARD: DASHBOARD_PAGE,
 };
 
 const LOGIN_API: IRouteConstant = {

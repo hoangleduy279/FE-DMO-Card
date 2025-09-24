@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { localeReducer, modalReducer } from './common';
+import { localeReducer, modalReducer, sidebarReducer } from './common';
 import { loaderReducer, accountReducer } from './api';
 
 const rootReducers = combineReducers({
@@ -7,6 +7,7 @@ const rootReducers = combineReducers({
     locale: localeReducer,
     modal: modalReducer,
     loader: loaderReducer,
+    sidebar: sidebarReducer,
 });
 
 export default rootReducers;
