@@ -1,7 +1,7 @@
 import { SET_LOCALE, SET_MODAL } from '@redux/actions/type';
 
 // Action set active locale
-export const setLocale = (data: string = 'kr') => {
+export const setLocale = (data: string = 'fr') => {
     return {
         type: SET_LOCALE,
         data,

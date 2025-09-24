@@ -1,4 +1,4 @@
 import en from './en';
-import kr from './kr';
+import fr from './fr';
 
-export { en, kr };
+export { en, fr };

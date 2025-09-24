@@ -1,0 +1,338 @@
+.app {
+    &__auth {
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .animate-float {
+            animation: float linear infinite;
+        }
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slide-down {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in {
+            animation: fade-in 1s ease-out;
+        }
+        .animate-slide-down {
+            animation: slide-down 0.8s ease-out;
+        }
+        .animate-slide-up {
+            animation: slide-up 0.8s ease-out 0.2s both;
+        }
+
+        // button
+        .emergency-container {
+            background: white;
+            border-radius: 1rem;
+            box-shadow:
+                0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin: 2rem auto;
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow:
+                    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+
+            // Header section
+            .emergency-header {
+                background: linear-gradient(135deg, #ef4444, #dc2626);
+                padding: 1rem;
+                text-align: center;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background: linear-gradient(135deg, #dc2626, #b91c1c);
+                }
+
+                .header-content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .emergency-icon {
+                        color: white;
+                        margin-right: 0.5rem;
+                        width: 24px;
+                        height: 24px;
+                    }
+
+                    .emergency-title {
+                        font-size: 1.25rem;
+                        font-weight: 600;
+                        color: white;
+                        margin: 0;
+                    }
+                }
+            }
+
+            // Main button section
+            .emergency-body {
+                padding: 2rem;
+                text-align: center;
+                background: #f8fafc;
+
+                .button-wrapper {
+                    display: inline-block;
+                    margin-bottom: 1rem;
+
+                    // 3D Realistic Emergency Button
+                    .emergency-button-3d {
+                        width: 10rem;
+                        height: 10rem;
+                        position: relative;
+                        border: none;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        background: none;
+                        padding: 0;
+
+                        // Outer silver/chrome ring
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: -8px;
+                            left: -8px;
+                            right: -8px;
+                            bottom: -8px;
+                            border-radius: 50%;
+                            background: linear-gradient(
+                                135deg,
+                                #f8f9fa 0%,
+                                #e9ecef 20%,
+                                #ced4da 40%,
+                                #adb5bd 60%,
+                                #6c757d 80%,
+                                #495057 100%
+                            );
+                            box-shadow:
+                                0 0 0 2px #ffffff,
+                                inset 0 2px 4px rgba(0, 0, 0, 0.15),
+                                inset 0 -2px 4px rgba(255, 255, 255, 0.6),
+                                0 2px 8px rgba(0, 0, 0, 0.1);
+                        }
+
+                        // Inner silver/chrome ring
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: -4px;
+                            left: -4px;
+                            right: -4px;
+                            bottom: -4px;
+                            border-radius: 50%;
+                            box-shadow:
+                                inset 0 1px 3px rgba(255, 255, 255, 0.8),
+                                inset 0 -1px 3px rgba(0, 0, 0, 0.3),
+                                0 1px 3px rgba(0, 0, 0, 0.1);
+                        }
+
+                        // Main red button surface
+                        .button-surface {
+                            position: relative;
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 50%;
+                            background: radial-gradient(ellipse at 30% 30%, #ff4444, #ee2222, #dd0000, #cc0000);
+                            box-shadow:
+                                inset 0 4px 8px rgba(255, 255, 255, 0.3),
+                                inset 0 -4px 8px rgba(0, 0, 0, 0.3),
+                                0 4px 12px rgba(0, 0, 0, 0.4);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            overflow: hidden;
+
+                            // Glossy highlight
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                top: 10%;
+                                left: 15%;
+                                width: 60%;
+                                height: 30%;
+                                background: linear-gradient(
+                                    135deg,
+                                    rgba(255, 255, 255, 0.6) 0%,
+                                    rgba(255, 255, 255, 0.3) 50%,
+                                    transparent 100%
+                                );
+                                border-radius: 50%;
+                                transform: rotate(-15deg);
+                            }
+
+                            // Small highlight dot
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                top: 20%;
+                                left: 25%;
+                                width: 20px;
+                                height: 12px;
+                                background: rgba(255, 255, 255, 0.8);
+                                border-radius: 50%;
+                                filter: blur(2px);
+                            }
+
+                            .button-text {
+                                color: #ffffff;
+                                font-weight: 700;
+                                font-size: 1.1rem;
+                                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+                                position: relative;
+                                z-index: 10;
+                                letter-spacing: 0.5px;
+                            }
+                        }
+
+                        // Hover effect
+                        &:hover {
+                            transform: translateY(-2px);
+
+                            .button-surface {
+                                background: radial-gradient(ellipse at 30% 30%, #ff5555, #ff3333, #ee1111, #dd0000);
+                                box-shadow:
+                                    inset 0 4px 8px rgba(255, 255, 255, 0.4),
+                                    inset 0 -4px 8px rgba(0, 0, 0, 0.2),
+                                    0 6px 16px rgba(0, 0, 0, 0.5);
+                            }
+                        }
+
+                        // Active/pressed effect
+                        &:active {
+                            transform: translateY(1px);
+
+                            .button-surface {
+                                background: radial-gradient(ellipse at 30% 30%, #cc1111, #bb0000, #aa0000, #990000);
+                                box-shadow:
+                                    inset 0 3px 6px rgba(0, 0, 0, 0.4),
+                                    inset 0 -2px 4px rgba(255, 255, 255, 0.1),
+                                    0 2px 6px rgba(0, 0, 0, 0.3);
+                            }
+                        }
+                    }
+                }
+
+                .emergency-description {
+                    color: #4b5563;
+                    margin-top: 1rem;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        // Alternative flat version for comparison
+        .emergency-container.flat-style {
+            .emergency-body {
+                .button-wrapper {
+                    .emergency-button-flat {
+                        width: 8rem;
+                        height: 8rem;
+                        background: #ef4444;
+                        border: none;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            background: #dc2626;
+                            transform: scale(1.05);
+                        }
+
+                        .button-text {
+                            color: white;
+                            font-weight: 600;
+                            font-size: 1.125rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Responsive design
+        @media (max-width: 768px) {
+            .emergency-container {
+                margin: 1rem;
+
+                .emergency-body {
+                    padding: 1.5rem;
+
+                    .button-wrapper .emergency-button-3d {
+                        width: 8rem;
+                        height: 8rem;
+
+                        .button-surface .button-text {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Pulse animation for attention
+        .emergency-container.animated {
+            .button-wrapper .emergency-button-3d {
+                animation: emergency-pulse 2s ease-in-out infinite;
+            }
+        }
+
+        @keyframes emergency-pulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+            }
+        }
+    }
+}

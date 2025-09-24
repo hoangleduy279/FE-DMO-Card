@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useAppDispatch } from './useRedux';
 import { setLocale as setLocaleAction } from '@redux/actions/common';
 
-const SUPPORTED_LOCALES = ['en', 'kr']; // <-- Danh sách locale hỗ trợ
+const SUPPORTED_LOCALES = ['en', 'fr']; // <-- Danh sách locale hỗ trợ
 
 export const useAppLocale = () => {
     const router = useRouter();
