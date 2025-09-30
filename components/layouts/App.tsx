@@ -36,7 +36,7 @@ const App: IAppComponent<IAppComponentProps> = (props) => {
     useEffect(() => {
         if (!token && !noAuthPath.includes(pathname)) {
             // router.replace(routes.CLIENT.AUTH.href);
-            router.replace(routes.CLIENT.DASHBOARD.href);
+            router.replace(routes.CLIENT.DASHBOARD_PROFILE.href);
         }
     }, [token]);
 
@@ -83,7 +83,7 @@ const App: IAppComponent<IAppComponentProps> = (props) => {
             <Modal />
             <div className="flex min-h-screen">
                 {!noSideBarPath.includes(pathname) && !isNotFoundPage && (
-                    <div className={`${sidebar ? '' : 'w-1/6'} bg-gray-100`}>
+                    <div className={`${sidebar ? 'bases__padding--left80' : 'w-1/6 '} bg-gray-100`}>
                         <Sidebar />
                     </div>
                 )}
