@@ -1,24 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import {
-    Calendar,
-    Heart,
-    Settings,
-    HelpCircle,
-    ChevronLeft,
-    ChevronDown,
-    ChevronUp,
-    Clock,
-    CheckCircle,
-    XCircle,
-    AlertCircle,
-    Shield,
-    BookOpen,
-    Phone,
-    User,
-    Dock,
-} from 'lucide-react';
-import { useAppDispatch, useAppSelector } from '@utils/hooks';
+import { Heart, ChevronLeft, ChevronDown, ChevronUp, UserRound, Stethoscope, History } from 'lucide-react';
+import { useAppDispatch, useAppSelector, useTrans } from '@utils/hooks';
 import { ReduxStates } from '@redux/store';
 import { setSidebar } from '@redux/actions';
 import { routes } from '@utils/constants';
@@ -28,6 +11,7 @@ const Sidebar = () => {
     const dispatch = useAppDispatch();
     const sidebar = useAppSelector((states: ReduxStates) => states.sidebar);
     const router = useRouter();
+    const trans = useTrans();
 
     const [activeItem, setActiveItem] = useState(routes.CLIENT.DASHBOARD_PROFILE.href);
     const [expandedItems, setExpandedItems] = useState(['appointments', 'settings', 'help']);
@@ -36,57 +20,34 @@ const Sidebar = () => {
     const menuItems = [
         {
             href: routes.CLIENT.DASHBOARD_PROFILE.href,
-            label: 'Profile',
-            icon: User,
+            label: trans.sideBar.profile,
+            icon: UserRound,
             color: 'text-blue-500',
         },
         {
             href: routes.CLIENT.DASHBOARD_CHRONOLOGY.href,
-            label: 'Chronology',
-            icon: User,
+            label: trans.sideBar.chronology,
+            icon: History,
             color: 'text-blue-500',
         },
         {
             href: routes.CLIENT.DASHBOARD_DOCTORS.href,
-            label: 'Dcoctors',
-            icon: Dock,
+            label: trans.sideBar.doctor,
+            icon: Stethoscope,
             color: 'text-blue-500',
         },
-        {
-            href: '/appointments',
-            label: 'Lịch hẹn',
-            icon: Calendar,
-            color: 'text-green-500',
-            children: [
-                { href: '/appointments/today', label: 'Hôm nay', icon: Clock },
-                { href: '/appointments/upcoming', label: 'Sắp tới', icon: AlertCircle },
-                { href: '/appointments/completed', label: 'Đã hoàn thành', icon: CheckCircle },
-                { href: '/appointments/cancelled', label: 'Đã hủy', icon: XCircle },
-            ],
-        },
-    ];
-
-    const bottomMenuItems = [
-        {
-            href: '/settings',
-            label: 'Cài đặt',
-            icon: Settings,
-            color: 'text-gray-500',
-            children: [
-                { href: '/settings/general', label: 'Chung', icon: Settings },
-                { href: '/settings/security', label: 'Bảo mật', icon: Shield },
-            ],
-        },
-        {
-            href: '/help',
-            label: 'Trợ giúp',
-            icon: HelpCircle,
-            color: 'text-gray-500',
-            children: [
-                { href: '/help/docs', label: 'Tài liệu', icon: BookOpen },
-                { href: '/help/contact', label: 'Liên hệ', icon: Phone },
-            ],
-        },
+        // {
+        //     href: '/appointments',
+        //     label: 'Lịch hẹn',
+        //     icon: Calendar,
+        //     color: 'text-green-500',
+        //     children: [
+        //         { href: '/appointments/today', label: 'Hôm nay', icon: Clock },
+        //         { href: '/appointments/upcoming', label: 'Sắp tới', icon: AlertCircle },
+        //         { href: '/appointments/completed', label: 'Đã hoàn thành', icon: CheckCircle },
+        //         { href: '/appointments/cancelled', label: 'Đã hủy', icon: XCircle },
+        //     ],
+        // },
     ];
 
     const handleItemClick = (href: string, hasChildren = false) => {
@@ -196,7 +157,6 @@ const Sidebar = () => {
                     border-r border-gray-200
                     flex flex-col
                 `}>
-                {/* Toggle button */}
                 <button
                     onClick={() => dispatch(setSidebar(!sidebar))}
                     className={`
@@ -209,10 +169,13 @@ const Sidebar = () => {
                     <ChevronLeft className="w-4 h-4 text-gray-600" />
                 </button>
 
-                {/* Logo/Header */}
                 <div
+                    onClick={() => {
+                        setActiveItem(routes.CLIENT.DASHBOARD_PROFILE.href);
+                        router.push(routes.CLIENT.DASHBOARD_PROFILE.href);
+                    }}
                     className={`
-                        flex items-center p-6 border-b border-gray-100
+                        flex items-center p-6 border-b border-gray-100 cursor-pointer
                         ${sidebar ? 'justify-center' : 'justify-start'}
                     `}>
                     <div className="flex items-center space-x-3">
@@ -221,21 +184,18 @@ const Sidebar = () => {
                             <Heart className="w-5 h-5 text-white" />
                         </div>
                         <div className={`transition-all duration-300 overflow-hidden ${sidebar ? 'w-0 opacity-0' : 'w-auto opacity-100'}`}>
-                            <h1 className="text-xl font-bold text-gray-800 whitespace-nowrap">MediCare</h1>
-                            <p className="text-xs text-gray-500 whitespace-nowrap">System</p>
+                            <h1 className="text-xl font-bold text-gray-800 whitespace-nowrap">my DMO-Card</h1>
                         </div>
                     </div>
                 </div>
 
-                {/* Scrollable area */}
                 <nav className="flex-1 overflow-y-auto px-4 py-2">
                     <div className="space-y-1">{menuItems.map(renderMenuItem)}</div>
-                    <div className={`mt-6 pt-4 border-t border-gray-200 space-y-1 ${sidebar ? 'border-t-0' : ''}`}>
+                    {/* <div className={`mt-6 pt-4 border-t border-gray-200 space-y-1 ${sidebar ? 'border-t-0' : ''}`}>
                         {bottomMenuItems.map(renderMenuItem)}
-                    </div>
+                    </div> */}
                 </nav>
 
-                {/* Footer - không absolute, nằm trong flow */}
                 <div className={`p-4 border-t border-gray-200 bg-gray-50 ${sidebar ? 'px-2' : 'px-4'}`}>
                     <div
                         className={`flex items-center space-x-3 p-3 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer ${sidebar ? 'justify-center' : 'justify-start'}`}>
@@ -251,7 +211,6 @@ const Sidebar = () => {
                 </div>
             </div>
 
-            {/* Overlay mobile */}
             {!sidebar && <div className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" onClick={() => dispatch(setSidebar(true))} />}
         </div>
     );

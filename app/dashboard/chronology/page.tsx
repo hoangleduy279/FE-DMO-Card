@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Plus, Stethoscope } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Plus, Stethoscope, Clock } from 'lucide-react';
 import {
     IDashboardChronologyPage,
     IDashboardChronologyPageProps,
@@ -9,7 +9,6 @@ import {
 } from '@interfaces/apps/dasboard/chronology/dashboardChronology';
 import { DashboardChronologyForm } from '@components/index';
 
-// Dummy data với ID unique
 const generateDummyData = () => {
     const operations = [
         { type: 'Opération de la mâchoire', description: 'Recontruction de la mâchoire supérieure', date: '11/07/2019' },
@@ -70,55 +69,70 @@ const DashboardChronologyPage: IDashboardChronologyPage<IDashboardChronologyPage
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 p-6 relative overflow-hidden">
-            <div className="flex justify-between items-center mb-6">
-                <h1 className="text-2xl font-semibold text-gray-800">OVERVIEW</h1>
-                <button
-                    onClick={() => handleOpenForm()}
-                    className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors">
-                    <Plus size={20} />
-                    Add an intervention
-                </button>
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-6 relative overflow-hidden">
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
+                <div className="flex items-center gap-4 flex-1">
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <Clock size={24} className="text-white" />
+                    </div>
+                    <div>
+                        <h1 className="text-3xl font-bold text-gray-900 mb-1">Intervention Timeline</h1>
+                        <p className="text-gray-600 text-sm">Chronological overview of medical history</p>
+                    </div>
+                </div>
+                <div className="flex items-center gap-3 flex-1 lg:flex-none cursor-pointer">
+                    <button
+                        onClick={() => handleOpenForm()}
+                        className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-6 py-3 rounded-xl flex items-center gap-2 font-medium shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer">
+                        <Plus size={20} />
+                        Add Intervention
+                    </button>
+                </div>
             </div>
-            <div className="bg-white rounded-lg shadow-sm">
-                {currentItems.map((item) => (
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                {currentItems.map((item, index) => (
                     <div
                         key={item.id}
                         onClick={() => handleOpenForm(item)}
-                        className="flex items-start p-6 border-b border-gray-100 last:border-b-0 cursor-pointer hover:bg-gray-50 transition-colors">
-                        <div className="flex flex-col items-center mr-6">
-                            <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2">
-                                <Stethoscope size={20} className="text-gray-600" />
+                        className="flex items-start p-6 border-b border-gray-100 last:border-b-0 cursor-pointer hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-200 relative">
+                        <div className="flex flex-col items-center mr-6 flex-shrink-0">
+                            <div
+                                className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 shadow-md transition-colors bg-gradient-to-br from-cyan-500 to-blue-100`}>
+                                <Stethoscope size={20} className={`text-white ${index === 0 ? 'text-white' : 'text-gray-600'}`} />
                             </div>
-                            {currentItems.findIndex((i) => i.id === item.id) < currentItems.length - 1 && (
-                                <div className="w-0.5 h-16 bg-gray-200"></div>
+                            {index < currentItems.length - 1 && (
+                                <div className="w-0.5 h-16 bg-gradient-to-b from-gray-200 to-blue-200"></div>
                             )}
                         </div>
 
                         <div className="flex-1">
-                            <div className="text-red-500 text-sm font-medium mb-1">{item.date}</div>
-                            <h3 className="text-xl font-semibold text-gray-800 mb-2">{item.type}</h3>
+                            <div className="text-red-500 text-sm font-medium mb-1 bg-gradient-to-r from-red-100 to-pink-100 px-2 py-1 rounded-full inline-block w-fit">
+                                {item.date}
+                            </div>
+                            <h3 className="text-xl font-semibold text-gray-800 mb-2 leading-tight">{item.type}</h3>
                             <p className="text-gray-600 italic">{item.description}</p>
                         </div>
                     </div>
                 ))}
             </div>
 
-            <div className="flex justify-center items-center mt-6 gap-4">
+            <div className="flex justify-center items-center mt-8 gap-4">
                 <button
                     onClick={() => setState((prev) => ({ ...prev, currentPage: Math.max(prev.currentPage - 1, 1) }))}
                     disabled={currentPage === 1}
-                    className="p-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50">
+                    className="p-3 rounded-xl border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 hover:shadow-md transition-all duration-200">
                     <ChevronLeft size={20} />
                 </button>
 
-                <div className="flex gap-2">
+                <div className="flex gap-2 bg-white px-4 py-2 rounded-xl shadow-sm">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
                             key={i + 1}
                             onClick={() => setState((prev) => ({ ...prev, currentPage: i + 1 }))}
-                            className={`px-3 py-2 rounded-lg ${
-                                currentPage === i + 1 ? 'bg-cyan-500 text-white' : 'border border-gray-300 hover:bg-gray-50'
+                            className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                                currentPage === i + 1
+                                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md'
+                                    : 'text-gray-600 hover:text-cyan-600 hover:bg-gray-100'
                             }`}>
                             {i + 1}
                         </button>
@@ -128,7 +142,7 @@ const DashboardChronologyPage: IDashboardChronologyPage<IDashboardChronologyPage
                 <button
                     onClick={() => setState((prev) => ({ ...prev, currentPage: Math.min(prev.currentPage + 1, totalPages) }))}
                     disabled={currentPage === totalPages}
-                    className="p-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50">
+                    className="p-3 rounded-xl border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 hover:shadow-md transition-all duration-200">
                     <ChevronRight size={20} />
                 </button>
             </div>

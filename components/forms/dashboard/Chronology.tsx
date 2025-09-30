@@ -1,8 +1,10 @@
 'use client';
+import { useTrans } from '@utils/hooks';
 import React, { useEffect, useState } from 'react';
 
 const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronologyComponentProps> = (props) => {
     const { id, onAdd, onClose, data } = props;
+    const trans = useTrans();
     const [state, setState] = useState<IDashboardChronologyComponentState>({
         type: '',
         date: '',
@@ -75,7 +77,6 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
     return (
         <div className="h-[100vh]">
             <div className="bg-white shadow-xl w-full max-w-xl max-h-[100vh] overflow-hidden border border-teal-100">
-                {/* Header */}
                 <div className="bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 px-8 py-6 border-b border-teal-100">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center gap-3">
@@ -86,12 +87,12 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                             </div>
                             <div>
                                 <h2 className="text-xl font-bold text-teal-900">{isEdit ? 'EDIT INTERVENTION' : 'ADD AN INTERVENTION'}</h2>
-                                <p className="text-sm text-teal-600">Complete the form below</p>
+                                <p className="text-sm text-teal-600">{trans.dashboard.chronology.form.note}</p>
                             </div>
                         </div>
                         <button
                             onClick={handleClose}
-                            className="text-teal-600 hover:bg-teal-100 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200">
+                            className="text-teal-600 hover:bg-teal-100 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 cursor-pointer">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -99,12 +100,9 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                     </div>
                 </div>
 
-                {/* Form Content */}
                 <div className="p-8 overflow-y-auto lg:h-[72vh] 2xl:h-[80vh] bg-gradient-to-b from-white to-teal-50/30">
                     <div className="space-y-6">
-                        {/* Type and Date - Side by side */}
                         <div className="flex flex-row items-center grid-cols-2 gap-4">
-                            {/* Type */}
                             <div className="space-y-2">
                                 <label className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                                     <svg className="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,7 +113,7 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                                             d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
                                         />
                                     </svg>
-                                    Type of Intervention
+                                    {trans.dashboard.chronology.form.type}
                                 </label>
                                 <select
                                     name="type"
@@ -130,7 +128,6 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                                 </select>
                             </div>
 
-                            {/* Date */}
                             <div className="space-y-2">
                                 <label className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                                     <svg className="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,7 +138,7 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                                             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                                         />
                                     </svg>
-                                    Intervention Date
+                                    {trans.dashboard.chronology.form.interventionDate}
                                 </label>
                                 <input
                                     type="date"
@@ -153,7 +150,6 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                             </div>
                         </div>
 
-                        {/* Title */}
                         <div className="col-span-2 space-y-2">
                             <label className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                                 <svg className="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,7 +160,7 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                                         d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
                                     />
                                 </svg>
-                                Intervention Title
+                                {trans.dashboard.chronology.form.interventionTitle}
                             </label>
                             <input
                                 type="text"
@@ -176,7 +172,6 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                             />
                         </div>
 
-                        {/* Hospital */}
                         <div className="col-span-2 sm:col-span-1 space-y-2">
                             <label className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                                 <svg className="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -187,7 +182,7 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                                         d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
                                     />
                                 </svg>
-                                Hospital
+                                {trans.dashboard.chronology.form.hospital}
                             </label>
                             <input
                                 type="text"
@@ -199,7 +194,6 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                             />
                         </div>
 
-                        {/* Doctor */}
                         <div className="col-span-2 sm:col-span-1 space-y-2">
                             <label className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                                 <svg className="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -210,7 +204,7 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                                     />
                                 </svg>
-                                Attending Doctor
+                                {trans.dashboard.chronology.form.hospital}
                             </label>
                             <select
                                 name="doctor"
@@ -225,7 +219,6 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                             </select>
                         </div>
 
-                        {/* Description */}
                         <div className="col-span-2 space-y-2">
                             <label className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                                 <svg className="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -236,7 +229,7 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                                         d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                                     />
                                 </svg>
-                                Description & Notes
+                                {trans.dashboard.chronology.form.des}
                             </label>
                             <textarea
                                 name="description"
@@ -250,12 +243,11 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                     </div>
                 </div>
 
-                {/* Footer */}
                 <div className="px-8 py-5 bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 border-t border-teal-100 flex justify-end gap-3">
                     <button
                         onClick={handleClose}
                         className="px-6 py-2.5 bg-white border-2 border-teal-200 rounded-xl font-semibold text-teal-700 hover:bg-teal-50 hover:border-teal-300 transition-all duration-200 shadow-sm">
-                        Cancel
+                        {trans.common.cancel}
                     </button>
                     <button
                         onClick={handleSubmit}
@@ -263,7 +255,7 @@ const DashboardChronologyForm: IDashboardChronologyComponent<IDashboardChronolog
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        {isEdit ? 'Update Intervention' : 'Add Intervention'}
+                        {isEdit ? trans.dashboard.chronology.form.updateIntervention : trans.dashboard.chronology.form.addIntervention}
                     </button>
                     {isEdit && (
                         <button
