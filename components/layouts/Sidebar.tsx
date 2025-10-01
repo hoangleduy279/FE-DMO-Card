@@ -69,11 +69,11 @@ const Sidebar = () => {
         const isExpanded = expandedItems.includes(id);
 
         return (
-            <div key={item.href}>
+            <div key={item.href} className="relative group">
                 <button
                     onClick={() => handleItemClick(item.href, hasChildren)}
                     className={`
-            w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg
+            w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg cursor-pointer
             transition-all duration-200 text-left group
             ${isActive && !hasChildren ? 'bg-blue-50 border border-blue-200 shadow-sm' : 'hover:bg-gray-50 border border-transparent'}
             ${sidebar ? 'justify-center' : 'justify-start'}
@@ -107,6 +107,21 @@ const Sidebar = () => {
 
                     {isActive && !hasChildren && !sidebar && <div className="w-2 h-2 bg-blue-500 rounded-full" />}
                 </button>
+
+                {sidebar && (
+                    <div
+                        className={`
+                            absolute left-full ml-2 top-1/2 -translate-y-1/2
+                            bg-gray-800 text-white text-sm px-3 py-1 rounded-md
+                            opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                            transition-all duration-200 z-[99999]
+                            shadow-lg
+                            pointer-events-none
+                            whitespace-nowrap overflow-visible
+                        `}>
+                        {item.label}
+                    </div>
+                )}
 
                 {hasChildren && isExpanded && !sidebar && (
                     <div className="ml-6 mt-1 space-y-1 border-l-2 border-gray-100 pl-4">
@@ -150,17 +165,18 @@ const Sidebar = () => {
         <div className="flex">
             <div
                 className={`
-                    fixed top-0 left-0 z-50
+                    fixed top-0 left-0
                     bg-white shadow-xl transition-all duration-300 ease-in-out
                     ${sidebar ? 'w-20' : 'w-80 lg:w-54 2xl:w-80'}
                     h-screen
                     border-r border-gray-200
                     flex flex-col
-                `}>
+                `}
+                style={{ zIndex: 1000 }}>
                 <button
                     onClick={() => dispatch(setSidebar(!sidebar))}
                     className={`
-                        absolute -right-3 top-8 z-10
+                        absolute -right-3 top-8 z-10 cursor-pointer
                         bg-white border border-gray-200 rounded-full p-1.5
                         shadow-md hover:shadow-lg transition-all duration-200
                         hover:bg-blue-50 hover:border-blue-200
@@ -211,7 +227,7 @@ const Sidebar = () => {
                 </div>
             </div>
 
-            {!sidebar && <div className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" onClick={() => dispatch(setSidebar(true))} />}
+            {!sidebar && <div className="fixed inset-0 bg-opacity-50 z-40 lg:hidden" onClick={() => dispatch(setSidebar(true))} />}
         </div>
     );
 };
