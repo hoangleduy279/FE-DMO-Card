@@ -198,7 +198,7 @@
         }
     }
     &__padding {
-        @for $i from 2 through 40 {
+        @for $i from 2 through 200 {
             &--left#{$i} {
                 padding-left: #{$i}px !important;
             }

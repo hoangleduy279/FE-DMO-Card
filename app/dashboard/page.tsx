@@ -4,7 +4,7 @@ import { Input } from '@components/index';
 import Pagination from '@components/layouts/Pagination';
 import React from 'react';
 
-const UserProfileApp = () => {
+const MyDashboardApp = () => {
     return (
         <div>
             <Input />
@@ -13,4 +13,4 @@ const UserProfileApp = () => {
     );
 };
 
-export default UserProfileApp;
+export default MyDashboardApp;
